@@ -8,23 +8,20 @@ class RangeIterator:
         self.start = start
         self.stop = stop
         self.step = step
-        self.n = self.start
+        self.current = self.start
 
     def __next__(self):
         if self.step < 0:
-            while self.n > self.stop:
+            if self.current > self.stop:
                 a = self.n
 
-                self.n = self.n + self.step
+                self.current = self.current + self.step
                 return a
             raise StopIteration
         else:
-            while self.n < self.stop:
-                a = self.n
-                self.n = self.n + self.step
+            while self.current < self.stop:
+                a = self.current
+                self.current = self.current + self.step
                 return a
-            raise StopIteration
 
-for i in RangeIterator(5, 5, -1):
-    print(i)
 
